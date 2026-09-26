@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import './layout.scss';
 
 export const metadata: Metadata = {
   title: "SessNetwork VM Panel",
