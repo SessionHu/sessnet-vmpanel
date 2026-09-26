@@ -8,13 +8,14 @@ import styles from './page.module.scss';
 export default async function ManagePage({
   params,
 }: {
-  params: Promise<{ name: string }>
+  params: Promise<{ id: string }>
 }) {
   const session = await auth()
   if (!session?.user) {
     redirect("/login")
   }
-  const { name } = await params
+  const { id } = await params
+  if (isNaN(Number(id))) return notFound();
   const asn = session.user.dn42.asn
   const db = getDatabase()
   const instance = db.prepare(`
@@ -26,9 +27,9 @@ export default async function ManagePage({
       remotes.host
     FROM instances
     LEFT JOIN remotes ON instances.remote = remotes.name
-    WHERE instances.name = ?
+    WHERE instances.id = ?
       AND instances.asn = ?
-  `).get(name, asn) as {
+  `).get(id, asn) as {
     id: number
     name: string
     remote: string
@@ -36,9 +37,7 @@ export default async function ManagePage({
     host: string
   } | undefined
   db.close()
-  if (!instance) {
-    notFound()
-  }
+  if (!instance) return notFound();
   return (
     <main>
       <h1>Manage {instance.name}</h1>

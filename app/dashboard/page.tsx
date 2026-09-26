@@ -65,7 +65,7 @@ export default async function DashboardPage() {
                 <td>{instance.id}</td>
                 <td>{instance.name}</td>
                 <td>{instance.remote}</td>
-                <td><a href={`/manage/${instance.name}`}>manage</a></td>
+                <td><a href={`/manage/${instance.id}`}>manage</a></td>
               </tr>
             ))}
           </tbody>
