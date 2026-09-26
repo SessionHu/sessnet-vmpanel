@@ -1,14 +1,15 @@
-import { signIn } from "@/auth"
+import { auth, signIn } from "@/auth"
+import { redirect } from "next/navigation"
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth()
+  if (session?.user) return redirect('/');
   return (
     <main>
       <h1>Login</h1>
-
       <form
         action={async () => {
           "use server"
-
           await signIn("iedon", {
             redirectTo: "/dashboard",
           })
