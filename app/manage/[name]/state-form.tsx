@@ -11,7 +11,6 @@ export default function StateForm({
   const [state, formAction, pending] = React.useActionState(
     action, null
   )
-  console.log(state, formAction, pending)
   return (
     <form action={formAction}>
       <div>

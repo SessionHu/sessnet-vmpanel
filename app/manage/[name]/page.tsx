@@ -66,7 +66,6 @@ export default async function ManagePage({
         <pre className={styles.pre}>{JSON.stringify(await instancesState(instance.host, instance.name), null, 2)}</pre>
         <h2>Instance</h2>
         <pre className={styles.pre}>{JSON.stringify(await instances(instance.host, instance.name), null, 2)}</pre>
-        <h2>State</h2>
       </section>
     </main>
   )
