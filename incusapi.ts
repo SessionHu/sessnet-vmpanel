@@ -6,11 +6,11 @@ export async function request(host: string, path: string, param: RequestInit = {
 }
 
 export async function instances(host: string, name: string) {
-	return await request(host, `/1.0/instances/${name}`);
+  return await request(host, `/1.0/instances/${name}`);
 }
 
 export async function instancesState(host: string, name: string) {
-	return await request(host, `/1.0/instances/${name}/state`);
+  return await request(host, `/1.0/instances/${name}/state`);
 }
 
 export async function instancesStateChange(host: string, name: string, state: {
@@ -19,7 +19,7 @@ export async function instancesStateChange(host: string, name: string, state: {
   stateful: boolean,
   timeout: number
 }) {
-	return await request(host, `/1.0/instances/${name}/state`, {
+  return await request(host, `/1.0/instances/${name}/state`, {
     method: 'PUT',
     body: JSON.stringify(state)
   });
